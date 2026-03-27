@@ -34,7 +34,7 @@ linters:
         - performance
 
     wrapcheck:
-      ignorePackageGlobs:
+      ignore-package-globs:
         - "github.com/Kazakumo/magic_wand/*"
 
   exclusions:
