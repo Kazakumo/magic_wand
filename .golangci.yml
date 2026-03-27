@@ -1,10 +1,13 @@
 version: "2"
 
-linters:
-  default: none
+formatters:
   enable:
     - gofmt
     - goimports
+
+linters:
+  default: none
+  enable:
     - govet
     - errcheck
     - staticcheck
