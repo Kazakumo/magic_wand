@@ -1,0 +1,48 @@
+version: "2"
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
+
+linters:
+  default: none
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - contextcheck
+    - wrapcheck
+    - noctx
+    - godot
+    - gocritic
+    - gochecknoinits
+    - unparam
+    - unused
+
+  settings:
+    govet:
+      enable-all: true
+      disable:
+        - fieldalignment
+
+    errcheck:
+      check-type-assertions: true
+      check-blank: true
+
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - style
+        - performance
+
+    wrapcheck:
+      ignore-package-globs:
+        - "github.com/Kazakumo/magic_wand/*"
+
+  exclusions:
+    rules:
+      - path: "_test\\.go"
+        linters:
+          - wrapcheck
+          - errcheck
