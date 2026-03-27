@@ -29,6 +29,9 @@ linters:
     errcheck:
       check-type-assertions: true
       check-blank: true
+      exclude-functions:
+        - (io.Closer).Close
+        - (io.ReadCloser).Close
 
     gocritic:
       enabled-tags:
