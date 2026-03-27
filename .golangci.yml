@@ -17,32 +17,29 @@ linters:
     - unparam
     - unused
 
-linters-settings:
-  govet:
-    enable-all: true
-    disable:
-      - fieldalignment
+  settings:
+    govet:
+      enable-all: true
+      disable:
+        - fieldalignment
 
-  errcheck:
-    check-type-assertions: true
-    check-blank: true
+    errcheck:
+      check-type-assertions: true
+      check-blank: true
 
-  gocritic:
-    enabled-tags:
-      - diagnostic
-      - style
-      - performance
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - style
+        - performance
 
-  wrapcheck:
-    ignorePackageGlobs:
-      - "github.com/Kazakumo/magic_wand/*"
+    wrapcheck:
+      ignorePackageGlobs:
+        - "github.com/Kazakumo/magic_wand/*"
 
-issues:
-  exclude-rules:
-    - path: "_test\\.go"
-      linters:
-        - wrapcheck
-        - errcheck
-
-  max-issues-per-linter: 0
-  max-same-issues: 0
+  exclusions:
+    rules:
+      - path: "_test\\.go"
+        linters:
+          - wrapcheck
+          - errcheck
