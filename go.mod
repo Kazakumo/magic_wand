@@ -1,6 +1,6 @@
 module github.com/Kazakumo/magic_wand
 
-go 1.25.7
+go 1.24
 
 require (
 	github.com/spf13/cobra v1.10.2
