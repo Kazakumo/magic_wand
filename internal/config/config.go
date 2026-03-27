@@ -7,11 +7,11 @@ import (
 )
 
 type Config struct {
-	Log     LogConfig     `mapstructure:"log"`
-	Ollama  OllamaConfig  `mapstructure:"ollama"`
-	Qdrant  QdrantConfig  `mapstructure:"qdrant"`
-	Ingest  IngestConfig  `mapstructure:"ingest"`
-	RAG     RAGConfig     `mapstructure:"rag"`
+	Log    LogConfig    `mapstructure:"log"`
+	Ollama OllamaConfig `mapstructure:"ollama"`
+	Qdrant QdrantConfig `mapstructure:"qdrant"`
+	Ingest IngestConfig `mapstructure:"ingest"`
+	RAG    RAGConfig    `mapstructure:"rag"`
 }
 
 type LogConfig struct {
@@ -20,10 +20,10 @@ type LogConfig struct {
 }
 
 type OllamaConfig struct {
-	BaseURL        string `mapstructure:"base_url"`
-	EmbedModel     string `mapstructure:"embed_model"`
-	ChatModel      string `mapstructure:"chat_model"`
-	TimeoutSec     int    `mapstructure:"timeout_sec"`
+	BaseURL    string `mapstructure:"base_url"`
+	EmbedModel string `mapstructure:"embed_model"`
+	ChatModel  string `mapstructure:"chat_model"`
+	TimeoutSec int    `mapstructure:"timeout_sec"`
 }
 
 type QdrantConfig struct {
@@ -33,17 +33,17 @@ type QdrantConfig struct {
 }
 
 type IngestConfig struct {
-	Workers      int    `mapstructure:"workers"`
-	ChunkSize    int    `mapstructure:"chunk_size"`
-	ChunkOverlap int    `mapstructure:"chunk_overlap"`
+	Workers         int `mapstructure:"workers"`
+	ChunkSize       int `mapstructure:"chunk_size"`
+	ChunkOverlap    int `mapstructure:"chunk_overlap"`
 	WatchDebounceMs int `mapstructure:"watch_debounce_ms"`
 }
 
 type RAGConfig struct {
-	TopK         int     `mapstructure:"top_k"`
-	AlphaCosine  float64 `mapstructure:"alpha_cosine"`
-	BetaKeyword  float64 `mapstructure:"beta_keyword"`
-	GammaAST     float64 `mapstructure:"gamma_ast"`
+	TopK           int     `mapstructure:"top_k"`
+	AlphaCosine    float64 `mapstructure:"alpha_cosine"`
+	BetaKeyword    float64 `mapstructure:"beta_keyword"`
+	GammaAST       float64 `mapstructure:"gamma_ast"`
 	ScoreThreshold float64 `mapstructure:"score_threshold"`
 }
 
