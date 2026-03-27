@@ -1,0 +1,30 @@
+# magic_wand デフォルト設定
+# 全項目はデフォルト値が設定されているため、変更したい項目だけ記載すればOK
+
+log:
+  level: info
+  format: text
+
+ollama:
+  base_url: http://localhost:11434
+  embed_model: nomic-embed-text
+  chat_model: llama3.2
+  timeout_sec: 30
+
+qdrant:
+  host: localhost
+  port: 6334
+  collection: magic_wand
+
+ingest:
+  workers: 4
+  chunk_size: 512
+  chunk_overlap: 64
+  watch_debounce_ms: 500
+
+rag:
+  top_k: 20
+  alpha_cosine: 0.6
+  beta_keyword: 0.3
+  gamma_ast: 0.1
+  score_threshold: 0.5
