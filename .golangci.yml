@@ -1,0 +1,56 @@
+version: "2"
+
+linters:
+  default: none
+  enable:
+    # 必須: コーディング規則の機械的な強制
+    - gofmt          # フォーマット
+    - goimports      # import整列
+    - govet          # 静的解析（suspicious constructs）
+    - errcheck       # エラー無視の検出
+    - staticcheck    # 包括的な静的解析
+
+    # このプロジェクト固有のルール強制
+    - contextcheck   # context.Contextが第一引数かチェック
+    - wrapcheck      # エラーが%wでラップされているかチェック
+    - noctx          # net/httpにcontextなしのリクエスト検出
+    - godot          # コメントの末尾ピリオド
+    - gocritic       # 各種アンチパターン検出
+    - gochecknoinits # init()関数の禁止（原則）
+    - unparam        # 使われていない関数パラメータ
+    - unused         # 使われていない変数・関数
+
+linters-settings:
+  govet:
+    enable-all: true
+    disable:
+      - fieldalignment  # パフォーマンス最適化は今は不要
+
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - style
+      - performance
+
+  wrapcheck:
+    ignorePackageGlobs:
+      - "github.com/shunyasato/magic_wand/*"  # 内部パッケージはラップ不要
+
+  gochecknoinits:
+    # main パッケージの init は許可
+    # ライブラリコードの init は禁止
+
+issues:
+  exclude-rules:
+    # テストファイルは一部ルールを緩和
+    - path: "_test\\.go"
+      linters:
+        - wrapcheck
+        - errcheck
+
+  max-issues-per-linter: 0
+  max-same-issues: 0

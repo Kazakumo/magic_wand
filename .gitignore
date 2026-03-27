@@ -1,0 +1,28 @@
+# Build outputs
+/magic_wand
+/dist/
+
+# Go
+*.test
+*.out
+coverage.txt
+
+# Config（個人設定・秘密情報）
+config.local.yaml
+.env
+
+# Claude Code（個人設定はコミットしない）
+.claude/settings.local.json
+
+# Docker volumes（ローカルのみ）
+qdrant_data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
