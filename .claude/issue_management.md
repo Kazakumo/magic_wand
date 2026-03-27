@@ -44,7 +44,7 @@ Epic Issue（フェーズ単位）
 | #23 | Epic: Phase 8 — CLI非インタラクティブ |
 | #24 | Epic: Phase 9 — 品質・仕上げ |
 
-## Claudeスラッシュコマンド（`.claude/commands/`）
+## Claudeスラッシュコマンド（`.claude/skills/`）
 
 | コマンド | 説明 |
 |---------|------|

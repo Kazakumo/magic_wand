@@ -73,7 +73,7 @@ internal/
     views/                 # dashboard / library / query / recommend / ingest
     components/            # tabbar / statusbar / gauge / badge / table / chat
 .claude/
-  commands/                # Claudeスラッシュコマンド（/status, /start-phase, /close-task）
+  skills/                  # Claudeスラッシュコマンド（/status, /start-phase, /close-task）
 ```
 
 ---
