@@ -44,12 +44,41 @@ Epic Issue（フェーズ単位）
 | #23 | Epic: Phase 8 — CLI非インタラクティブ |
 | #24 | Epic: Phase 9 — 品質・仕上げ |
 
-## 実装開始時のフロー
+## Claudeスラッシュコマンド（`.claude/commands/`）
 
-1. 対象フェーズのEpic Issueを確認（子タスクの番号を把握）
-2. `main` から作業ブランチを切る（`feat/phase2-embedding` 等）
-3. 各タスク完了時に対応するTask Issueをcloseする
-4. フェーズ完了・PRマージ後にEpic Issueをcloseする
+| コマンド | 説明 |
+|---------|------|
+| `/status` | 現在のフェーズ・残タスク・ブランチ状態を一覧表示 |
+| `/start-phase <N>` | フェーズNの作業開始（ブランチ作成・Issue一覧表示） |
+| `/close-task <Issue番号>` | タスク完了処理（Issueclose・Epic進捗更新） |
+
+## 実装フロー（セッションをまたぐ場合）
+
+```
+セッション開始
+  └─ /status                          # 現在状態を確認
+  └─ /start-phase N                   # ブランチ作成 + タスク確認
+      └─ 実装（各タスクをIssue番号で追跡）
+      └─ /close-task #X               # タスク完了ごとに実行
+      └─ make test && make lint
+      └─ PRを作成（Closes #X, #Y...）
+      └─ CIグリーン確認
+      └─ mainにマージ
+      └─ /close-task <epic番号>       # フェーズ完了
+```
+
+## ブランチ命名規則（フェーズ対応）
+
+| フェーズ | ブランチ名 |
+|---------|----------|
+| Phase 2 | `feat/phase2-embedding` |
+| Phase 3 | `feat/phase3-vectordb` |
+| Phase 4 | `feat/phase4-ingestion` |
+| Phase 5 | `feat/phase5-rag` |
+| Phase 6 | `feat/phase6-recommender` |
+| Phase 7 | `feat/phase7-tui` |
+| Phase 8 | `feat/phase8-cli` |
+| Phase 9 | `feat/phase9-quality` |
 
 ## PRとIssueの紐付け
 

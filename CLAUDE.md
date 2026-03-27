@@ -6,6 +6,15 @@
 
 ---
 
+## セッション開始時に必ずやること
+
+**新しいセッションを始めるときは、最初に `/status` を実行してから作業を開始すること。**
+
+これにより現在のフェーズ・残タスク・ブランチ状態が確認できる。
+作業フローの詳細は [`.claude/issue_management.md`](.claude/issue_management.md) を参照。
+
+---
+
 ## 絶対ルール
 
 **プロジェクト方針**
@@ -25,6 +34,10 @@
 - ブランチ: `<type>/<説明>`（例: `feat/tui-dashboard`）
 - コミット: Conventional Commits形式（例: `feat(tui): add dashboard view`）
 - `main` への直接 push 禁止・必ずブランチ経由PR
+- **ファイルを1行も書く前にブランチを作ること**
+
+**フォーマット**
+- Goファイルを作成・編集したら、コミット前に `gofmt -w <file>` を実行すること
 
 ---
 
@@ -32,7 +45,7 @@
 
 | 分類 | 技術 |
 |------|------|
-| 言語 | Go 1.22+ |
+| 言語 | Go 1.24（golangci-lint v2互換のため） |
 | TUI | bubbletea + lipgloss + bubbles + glamour |
 | ベクトルDB | Qdrant（gRPC、公式`qdrant-go`クライアント） |
 | ローカルLLM | Ollama（`nomic-embed-text` embedding / `llama3.2` chat） |
@@ -40,6 +53,7 @@
 | 設定 | viper（`config.yaml` + env override） |
 | ロガー | slog（JSON/text切り替え） |
 | CLI補助 | cobra（非インタラクティブサブコマンド用） |
+| CI | golangci-lint v2.1.6 / golangci-lint-action@v7 |
 
 ---
 
@@ -58,7 +72,8 @@ internal/
     styles/theme.go        # magic_wandカラーパレット
     views/                 # dashboard / library / query / recommend / ingest
     components/            # tabbar / statusbar / gauge / badge / table / chat
-.claude/                   # 詳細設計ドキュメント（下記参照）
+.claude/
+  commands/                # Claudeスラッシュコマンド（/status, /start-phase, /close-task）
 ```
 
 ---
@@ -89,6 +104,8 @@ make lint    # golangci-lint
 
 | 知りたいこと | 読むファイル |
 |------------|-------------|
+| **現在の進捗・次のタスク** | **GitHub Issues（`/status` で確認）** |
+| **Issue管理ルール・フェーズ番号マッピング** | **`.claude/issue_management.md`** |
 | ユーザーストーリー・機能要件 | `.claude/requirements.md` |
 | アーキテクチャ・各コンポーネント詳細設計 | `.claude/design.md` |
 | TUI画面レイアウト・カラーパレット詳細 | `.claude/design.md` §3 |
@@ -100,6 +117,12 @@ make lint    # golangci-lint
 
 ---
 
-## 現在のタスク状態（tasks.mdを正とする）
+## タスク進捗（GitHub Issuesが正）
+
+タスクの進捗は `.claude/tasks.md` ではなく **GitHub Issues** で管理する。
+
+- 各フェーズの Epic Issue にタスク一覧がある
+- 実装完了したら `/close-task <issue番号>` で閉じる
+- フェーズ開始時は `/start-phase <フェーズ番号>` でブランチ作成からタスク一覧確認まで一括でできる
 
 @.claude/tasks.md

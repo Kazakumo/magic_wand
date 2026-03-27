@@ -1,6 +1,10 @@
 # タスク管理 — magic_wand
 
-最終更新: 2026-03-27 (v2 — TUI・進捗管理・インジェスト最適化・リランカー強化を追加)
+> **⚠️ このファイルは参照用マスターリストです。**
+> 進捗の正は **GitHub Issues** です。実作業は Issue を見てください。
+> 現在状態の確認: `/status` コマンドを実行してください。
+
+最終更新: 2026-03-27 (v3 — Phase 1完了)
 
 凡例: `[ ]` 未着手 / `[~]` 進行中 / `[x]` 完了
 
@@ -8,12 +12,12 @@
 
 ## Phase 1: プロジェクト基盤
 
-- [ ] **T-01** Go module初期化 (`go mod init github.com/shunyasato/magic_wand`)
-- [ ] **T-02** cobraによるCLI骨格作成（引数なし→TUI起動 / `ingest` / `query` / `watch`サブコマンド）
-- [ ] **T-03** `internal/config/` — viper設定ロード + `config.yaml`デフォルト
-- [ ] **T-04** `slog`ベースのロガー初期化（JSON/text切り替え対応）
-- [ ] **T-05** `docker-compose.yml` — Qdrant起動設定
-- [ ] **T-06** Makefile — `make run` / `make test` / `make lint` / `make up` / `make down` / `make tui`
+- [x] **T-01** Go module初期化 (`go mod init github.com/Kazakumo/magic_wand`)
+- [x] **T-02** cobraによるCLI骨格作成（引数なし→TUI起動 / `ingest` / `query` / `watch`サブコマンド）
+- [x] **T-03** `internal/config/` — viper設定ロード + `config.yaml`デフォルト
+- [x] **T-04** `slog`ベースのロガー初期化（JSON/text切り替え対応）
+- [x] **T-05** `docker-compose.yml` — Qdrant起動設定
+- [x] **T-06** Makefile — `make run` / `make test` / `make lint` / `make up` / `make down` / `make tui`
 
 ---
 
