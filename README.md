@@ -7,6 +7,40 @@ Vector Database: QdrantやMilvusをコンテナで立ち上げ、GoのgRPCクラ
 RAG (Retrieval-Augmented Generation) の自作: 既存のフレームワークを使い、Goで検索ロジックとプロンプトエンジニアリングを実装。
 成長への寄与: 自分の過去の思考と現在の悩みをAIが紐付け、「次に学ぶべきトピック」を技術的根拠（Semantic Search）に基づいて提示してくれます。
 
+---
+
+## 開発者向け情報
+
+### セットアップ
+
+```bash
+make up      # Qdrant起動（Docker必須）
+make run     # TUI起動
+make test    # テスト実行
+make lint    # golangci-lint実行
+```
+
+**前提条件:** Docker / [Ollama](https://ollama.com/) (`nomic-embed-text` + `llama3.2` が必要)
+
+### Issue管理
+
+タスクは GitHub Issues で管理しています。
+
+| Issue | フェーズ |
+|-------|---------|
+| [#9](https://github.com/Kazakumo/magic_wand/issues/9) | Phase 2: Embedding Layer |
+| [#13](https://github.com/Kazakumo/magic_wand/issues/13) | Phase 3: Vector DB Layer |
+| [#19](https://github.com/Kazakumo/magic_wand/issues/19) | Phase 4: Ingestion Pipeline |
+| [#20](https://github.com/Kazakumo/magic_wand/issues/20) | Phase 5: RAG Engine |
+| [#21](https://github.com/Kazakumo/magic_wand/issues/21) | Phase 6: Semantic Recommender |
+| [#22](https://github.com/Kazakumo/magic_wand/issues/22) | Phase 7: TUI実装 |
+| [#23](https://github.com/Kazakumo/magic_wand/issues/23) | Phase 8: CLI非インタラクティブ |
+| [#24](https://github.com/Kazakumo/magic_wand/issues/24) | Phase 9: 品質・仕上げ |
+
+各フェーズのEpic Issueに子タスクのリストがあります。詳細は `.claude/issue_management.md` を参照。
+
+---
+
 🛠 実装する「エグい」コンポーネント
 このプロジェクトを「難易度最高」にするための3つの柱です。
 
