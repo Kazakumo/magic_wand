@@ -2,7 +2,6 @@ package vectordb
 
 import (
 	"context"
-	"crypto/sha256"
 	"fmt"
 	"log/slog"
 	"time"
@@ -82,11 +81,9 @@ func (s *QdrantStore) ensureCollection(ctx context.Context) error {
 	return nil
 }
 
-// chunkIDToUUID は chunk ID (hex string) を UUID 形式に変換する。
+// chunkIDToUUID は chunk ID (sha256 hex 64文字) を UUID 形式にスライスする。
 func chunkIDToUUID(id string) string {
-	h := sha256.Sum256([]byte(id))
-	return fmt.Sprintf("%08x-%04x-%04x-%04x-%012x",
-		h[0:4], h[4:6], h[6:8], h[8:10], h[10:16])
+	return id[0:8] + "-" + id[8:12] + "-" + id[12:16] + "-" + id[16:20] + "-" + id[20:32]
 }
 
 // TryValueMapFromPayload は Payload を Qdrant の Value マップに変換する。テスト用に公開。

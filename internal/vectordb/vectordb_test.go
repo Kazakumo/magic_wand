@@ -5,17 +5,22 @@ import (
 	"time"
 )
 
+const (
+	hexID1 = "a3f1c2d4e5b6a7f8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2"
+	hexID2 = "b4e2d3c5f6a7b8e9d0c1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3"
+)
+
 func TestChunkIDToUUID_Deterministic(t *testing.T) {
-	a := chunkIDToUUID("some-chunk-id")
-	b := chunkIDToUUID("some-chunk-id")
+	a := chunkIDToUUID(hexID1)
+	b := chunkIDToUUID(hexID1)
 	if a != b {
 		t.Errorf("chunkIDToUUID not deterministic: %q != %q", a, b)
 	}
 }
 
 func TestChunkIDToUUID_Unique(t *testing.T) {
-	a := chunkIDToUUID("chunk-1")
-	b := chunkIDToUUID("chunk-2")
+	a := chunkIDToUUID(hexID1)
+	b := chunkIDToUUID(hexID2)
 	if a == b {
 		t.Errorf("different IDs produced same UUID: %q", a)
 	}
